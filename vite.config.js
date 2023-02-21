@@ -7,11 +7,4 @@ export default defineConfig({
       'Cross-Origin-Opener-Policy': 'same-origin',
     },
   },
-  build: {
-    lib: {
-      entry: './main.js',
-      name: 'Counter',
-      fileName: 'counter',
-    },
-  },
 })

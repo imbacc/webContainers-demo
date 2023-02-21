@@ -10,5 +10,6 @@ document.querySelector('#app').innerHTML = `
       <iframe src=""></iframe>
     </div>
   </div>
+  <div class="log"></div>
 `
 initWebContainer()

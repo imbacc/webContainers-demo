@@ -28,11 +28,15 @@ async function writeIndexJS(webcontainerInstance, content) {
 export const initWebContainer = async () => {
   const files = await getFiles()
   console.log('%c [ files ]-18', 'font-size:14px; background:#41b883; color:#ffffff;', files)
-  /** @type {HTMLIFrameElement | null} */
   const iframeEl = document.querySelector('iframe')
-
-  /** @type {HTMLTextAreaElement | null} */
   const textareaEl = document.querySelector('textarea')
+  const logEl = document.querySelector('.log')
+
+  const appnedLog = (str) => {
+    const p = document.createElement('p')
+    p.innerText = str
+    logEl.appendChild(p)
+  }
 
   window.addEventListener('load', async () => {
     // Call only once
@@ -60,25 +64,28 @@ export const initWebContainer = async () => {
     const [ls, lsState, lsOut] = await runCommand(webcontainerInstance, 'ls', ['-l'])
     console.log('%c [ lsState ]-66', 'font-size:14px; background:#41b883; color:#ffffff;', lsState)
 
-    console.log('%c [ ls ]-57', 'font-size:14px; background:#41b883; color:#ffffff;', '--------------------------------')
+    appnedLog(`ls------------------------${lsState}`)
     lsOut((res) => {
       console.log(res)
+      appnedLog(res)
     })
 
     const [installDep, installDepState, installDepOut] = await runCommand(webcontainerInstance, 'npm', ['install'])
     console.log('%c [ installDepState ]-51', 'font-size:14px; background:#41b883; color:#ffffff;', installDepState)
 
-    console.log('%c [ installDepOut ]-57', 'font-size:14px; background:#41b883; color:#ffffff;', '--------------------------------')
+    appnedLog(`installDepOut------------------------installDepState=${installDepState}`)
     installDepOut((res) => {
       console.log(res)
+      appnedLog(res)
     })
 
     const [run, runState, runOut] = await runCommand(webcontainerInstance, 'npm', ['run', 'start'])
     console.log('%c [ runState ]-59', 'font-size:14px; background:#41b883; color:#ffffff;', runState)
 
-    console.log('%c [ runOut ]-57', 'font-size:14px; background:#41b883; color:#ffffff;', '--------------------------------')
+    appnedLog(`runOut------------------------runState=${runState}`)
     runOut((res) => {
       console.log(res)
+      appnedLog(res)
     })
   })
 }
