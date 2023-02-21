@@ -10,8 +10,8 @@ async function runCommand(webcontainerInstance, command, commandArgs = []) {
       new WritableStream({
         write(data) {
           callback?.(data)
-        }
-      })
+        },
+      }),
     )
   }
 
@@ -19,7 +19,7 @@ async function runCommand(webcontainerInstance, command, commandArgs = []) {
   return [process, state, outputFunction]
 }
 
-/** @param {string} content*/
+/** @param {string} content */
 
 async function writeIndexJS(webcontainerInstance, content) {
   await webcontainerInstance.fs.writeFile('/index.js', content)
@@ -59,7 +59,7 @@ export const initWebContainer = async () => {
 
     const [ls, lsState, lsOut] = await runCommand(webcontainerInstance, 'ls', ['-l'])
     console.log('%c [ lsState ]-66', 'font-size:14px; background:#41b883; color:#ffffff;', lsState)
-    
+
     console.log('%c [ ls ]-57', 'font-size:14px; background:#41b883; color:#ffffff;', '--------------------------------')
     lsOut((res) => {
       console.log(res)

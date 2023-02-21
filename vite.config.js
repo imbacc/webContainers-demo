@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   server: {
@@ -9,9 +9,9 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: './lib/main.js',
+      entry: './main.js',
       name: 'Counter',
-      fileName: 'counter'
-    }
-  }
+      fileName: 'counter',
+    },
+  },
 })

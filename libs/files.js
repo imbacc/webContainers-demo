@@ -9,8 +9,8 @@ export const getFiles = () => {
   for (const key of keys) {
     modules[key.replace('../containers/', '')] = {
       file: {
-        contents: globList[key]
-      }
+        contents: globList[key],
+      },
     }
   }
 
